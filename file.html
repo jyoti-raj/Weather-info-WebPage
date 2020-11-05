@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="font/Rimouski.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div>
+        <input type="text" class="inputValue" required placeholder="enter city name"><br/>
+        <button type="submit" class="button" value="submit">Submit</button>
+    </div>
+
+
+
+    <div> </div>
+    <div class="container">
+        <div class="app-title">
+            <p>Weather</p>
+        </div>
+        <div class="notification"></div>
+        <div class="weather-container">
+            <div class="weather-icon"><img src="icons/unknown.png"></div>
+            <div class="temperature-value">
+                <p>- *<span>C</span></p>
+            </div>
+            </br>
+            <div class="temperature-description">
+                <p> - </p>
+            </div>
+            <div class="location">
+                <p><b>-</b></p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var kelvin = 273.15;
+        // var key = "82005d27a116c2880c8f0fcb866998a0";
+        var button = document.querySelector('.button');
+        var inputValue = document.querySelector('.inputValue');
+        var iconElement = document.querySelector(".weather-icon");
+        var main = document.querySelector('#name');
+        var temp = document.querySelector('.temperature-value p');
+        var desc = document.querySelector('.temperature-description p');
+        var loc = document.querySelector(".location p");
+        var notifi = document.querySelector(".notification");
+
+        //by entering user's choice or by default get user's data
+        if (inputValue.value == '') {
+            inputValue.value = 'motihari';
+        } else {
+            inputValue.value = select('#inputValue');
+        }
+
+        //event occured when mouse clicked by user
+        button.addEventListener('click', function() {
+            fetch('http://api.openweathermap.org/data/2.5/weather?q=' + inputValue.value + '&appid=82005d27a116c2880c8f0fcb866998a0')
+                .then(response => response.json())
+                //.then(data => console.log(data))
+                .then(data => {
+
+                    var tempValue = Math.floor(data['main']['temp'] - kelvin);
+                    var descValue = data['weather'][0]['description'];
+                    var iconId = data.weather[0].icon;
+                    var city = data.name;
+                    var country = data.sys.country;
+
+                    iconElement.innerHTML = `<img src="icons/${iconId}.png"/>`;
+                    temp.innerHTML = `${tempValue}&#176;<span>C</span>`;
+                    // main.innerHTML = nameValue;
+                    desc.innerHTML = descValue;
+                    loc.innerHTML = `${city},${country}`;
+
+
+                })
+
+            .catch(err => alert("invalid city name"))
+        })
+    </script>
+
+
+</body>
+
+</html>

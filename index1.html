@@ -1,0 +1,67 @@
+<!Doctype html>
+<html>
+
+<head>
+    <title>Weather</title>
+    <link rel="stylesheet" type="text/css" href="style1.css">
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="file2.js"></script>
+    <!-- <img src="images/bg.jpg"
+				style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:-5000;"> -->
+    <style>
+        body {
+            background-color: #70db70;
+        }
+        
+        .header {
+            padding: 50px;
+            text-align: center;
+            background: #1abc9c;
+            color: white;
+            font-size: 30px;
+        }
+        
+        input {
+            padding: .5%;
+        }
+        
+        select {
+            padding: .5%;
+        }
+        /*.button3 {
+            padding: 10px 20px;
+            font-size: 15px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            color: black;
+            border: none;
+            position: fixed;
+            margin-top: 10px;
+            right: 660px;
+        }*/
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <!-- <a class="button" href="index1.html">Home</a><br/> -->
+        <input type="text" id="input" required placeholder="enter city name">
+        <select id="select">
+            <option style="color:gray" value="null">select one option</option>
+
+            <option value="main">Main -Humidity and Pressure</option>
+            <!-- <option value="weather">Weather - Main and Description</option> -->
+            <option value="wind">Wind - Deg and Speed</option>			
+            <option value="sys">Sys - Country, Sunrise and Sunset</option>	
+            <option value="coord">Coordinates - Longitude and Latitude</option>				
+        </select>
+        <br/>
+        <button class="button3" type="button" id="submit">Search!</button>
+    </div>
+    <div id="content" class="weather-list">
+        <!--content-->
+    </div>
+</body>
+
+</html>
